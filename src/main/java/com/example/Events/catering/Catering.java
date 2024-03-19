@@ -1,7 +1,6 @@
 package com.example.Events.catering;
 
 import com.example.Events.event.Event;
-import com.example.Events.people.People;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,9 +26,28 @@ public class Catering {
         private String typeFood;
         private String theme;
         @ManyToMany(mappedBy = "caterings")
-        private Set<Event> events = new HashSet<>();
+        public Set<Event> events = new HashSet<>();
 
+
+        public Catering(String typeFood, String theme, Set<Event> events) {
+                this.typeFood = typeFood;
+                this.theme = theme;
+                this.events = events;
+        }
+
+        public Catering(Long id, String typeFood, String theme, Set<Event> events) {
+                this.id = id;
+                this.typeFood = typeFood;
+                this.theme = theme;
+                this.events = events;
+        }
+
+        public Catering(String typeFood, String theme) {
+                this.typeFood = typeFood;
+                this.theme = theme;
+        }
 
         public Catering() {
-                }
+
+        }
 }

@@ -14,24 +14,27 @@ public class EventConfig {
 
     @Bean
     CommandLineRunner EventCommandLineRunner(
-            EventRepository repository){
+            EventRepository eventRepository){
 
         return args -> {
-            Event CecilysEvent = new Event(
-                    "Birthday",
-                    "Cecily.Scott@gmail.com",
-                    LocalDate.of(2024, Month.JUNE, 13)
+            Event MerisEvent = new Event(
+                    "PlantDay",
+                    "Meri.Farrell@gmail.com",
+                    LocalDate.of(2026, Month.JULY, 20)
             );
-            Event JohnsEvent = new Event(
-                    "Anniversary",
-                    "John.Joe@gmail.com",
-                    LocalDate.of(2025, Month.FEBRUARY, 1)
-
-
-            );
-            repository.saveAll(
-                    List.of(CecilysEvent, JohnsEvent)
-            );
+//            Event CecilysEvent = new Event(
+//                    "Birthday",
+//                    "Cecily.Scott@gmail.com",
+//                    LocalDate.of(2024, Month.JUNE, 13)
+//            );
+//            Event JohnsEvent = new Event(
+//                    "Anniversary",
+//                    "John.Joe@gmail.com",
+//                    LocalDate.of(2025, Month.FEBRUARY, 1)
+//
+//
+//            );
+            eventRepository.save(MerisEvent);
         };
     };
 }

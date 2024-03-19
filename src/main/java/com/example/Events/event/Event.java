@@ -15,7 +15,7 @@ import java.util.*;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"people"})
+//@EqualsAndHashCode(exclude = {"people"})
 @Table
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -67,6 +67,7 @@ public class Event {
         this.contactInfo = contactInfo;
         this.eventDate = eventDate;
     }
+
 
     public Event() {
 

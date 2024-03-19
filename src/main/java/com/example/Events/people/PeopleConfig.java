@@ -9,11 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class PeopleConfig {
     @Bean
     CommandLineRunner PeopleCommandLineRunner(
-            EventRepository repository){
+            PeopleRepository peopleRepository){
         return args -> {
             People person = new People(
 
             );
+            peopleRepository.save(person);
         };
-    };
+    }
 }

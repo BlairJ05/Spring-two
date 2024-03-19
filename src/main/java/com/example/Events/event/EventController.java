@@ -19,7 +19,7 @@ public class EventController {
     }
 
     @GetMapping("/{eventId}")
-    public com.example.Events.event.Event getEventById(@PathVariable Long eventId) {
+    public com.example.Events.event.Event getEventById(@PathVariable("eventId") Long eventId) {
         return eventService.getEventById(eventId);
     }
 
@@ -35,7 +35,7 @@ public class EventController {
 
     @PutMapping("/{eventId}")
     public void updateEvent(
-            @PathVariable Long eventId,
+            @PathVariable("eventId") Long eventId,
             @RequestParam(required = false) String eventName,
             @RequestParam(required = false) String contactInfo,
             @RequestParam(required = false) LocalDate eventDate) {
@@ -43,7 +43,7 @@ public class EventController {
     }
 
     @DeleteMapping("/{eventId}")
-    public void deleteEvent(@PathVariable Long eventId) {
+    public void deleteEvent(@PathVariable("eventId") Long eventId) {
         eventService.deleteEvent(eventId);
     }
 }
