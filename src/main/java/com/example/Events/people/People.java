@@ -1,6 +1,7 @@
 package com.example.Events.people;
 
 import com.example.Events.event.Event;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,9 +17,21 @@ public class People {
 
     private String name;
     private String email;
-
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="event_id", referencedColumnName = "id")
     private Event event;
+
+
+
+    public People(String name, String email, Event event) {
+        this.name = name;
+        this.email = email;
+        this.event = event;
+    }
+
+    public People() {
+
+    }
 }
 

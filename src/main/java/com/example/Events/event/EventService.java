@@ -1,5 +1,7 @@
 package com.example.Events.event;
 
+import com.example.Events.people.People;
+import com.example.Events.catering.Catering;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,15 @@ import java.util.Optional;
 @Service
 public class EventService {
     private final com.example.Events.event.EventRepository eventRepository;
+    private final com.example.Events.people.PeopleRepository peopleRepository;
+
+    private final com.example.Events.catering.CateringRepository cateringRepository;
 
     @Autowired
-    public EventService(com.example.Events.event.EventRepository eventRepository) {
+    public EventService(com.example.Events.event.EventRepository eventRepository, com.example.Events.people.PeopleRepository peopleRepository, com.example.Events.catering.CateringRepository cateringRepository) {
         this.eventRepository = eventRepository;
+        this.peopleRepository = peopleRepository;
+        this.cateringRepository = cateringRepository;
     }
 
     public List<Event> getEvent() {
@@ -64,6 +71,23 @@ public class EventService {
     public Event getEventById(Long eventId) {
         return eventRepository.findById(eventId)
                 .orElseThrow(() -> new IllegalStateException("Event with id " + eventId + " does not exist"));
+    }
+
+    public void addPeople(Long eventId, Long peopleId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalStateException("event with id " + eventId + "Does not exist"));
+        People people = peopleRepository.findById(peopleId)
+                .orElseThrow(() -> new IllegalStateException("people with id " + peopleId + "Does not exist"));
+        event.setAttendees(people);
+        eventRepository.save(event);
+    }
+    public void addCatering(Long eventId, Long cateringId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalStateException("event with id " + eventId + "Does not exist"));
+        Catering catering = cateringRepository.findById(cateringId)
+                .orElseThrow(() -> new IllegalStateException("people with id " + cateringId + "Does not exist"));
+        event.setCatering(catering);
+        eventRepository.save(event);
     }
 }
 

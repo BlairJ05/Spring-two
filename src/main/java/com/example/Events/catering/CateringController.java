@@ -16,25 +16,27 @@ public class CateringController {
 
 
     @GetMapping("/getAll")
-    public List<Catering> getAll() {return cateringService.getAllCaterings();}
+    public List<Catering> getAll() {
+        return cateringService.getAllCaterings();
+    }
 
 //    @GetMapping("/{id}")
 //    public ResponseEntity<Catering> getCateringById(@PathVariable Long id) {
 //        Optional<Catering> catering = cateringService.;
 //    }
 
-    @PostMapping
-    public void createCatering(@RequestBody Catering catering){
+    @PostMapping("/createCatering")
+    public void createCatering(@RequestBody Catering catering) {
         cateringService.createCatering(catering);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/{foodType}")
     public void updateCatering(@PathVariable("id") Long id, @RequestBody String foodType) {
-         cateringService.updateCatering(id, foodType);
+        cateringService.updateCatering(id, foodType);
     }
 
     @DeleteMapping("/{id}")
     public void deleteCatering(@PathVariable("id") Long id) {
-         cateringService.deleteCatering(id);
+        cateringService.deleteCatering(id);
     }
 }

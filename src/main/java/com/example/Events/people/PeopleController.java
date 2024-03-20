@@ -37,7 +37,6 @@ public class PeopleController {
     }
 
     @PutMapping("/updatePerson")
-    @PostMapping
     public ResponseEntity<People> updatePerson(@RequestBody People person) {
         People createdPerson = peopleService.createPerson(person);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson);

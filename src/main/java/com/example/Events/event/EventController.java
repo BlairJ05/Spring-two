@@ -46,4 +46,13 @@ public class EventController {
     public void deleteEvent(@PathVariable("eventId") Long eventId) {
         eventService.deleteEvent(eventId);
     }
+
+    @PutMapping("/{peopleId}/{eventId}")
+    public void addPeople(@PathVariable("eventId") Long eventId, @PathVariable("peopleId") Long peopleId) {
+        eventService.addPeople(eventId, peopleId);
+    }
+    @PutMapping("/{cateringId}/{eventId}")
+    public void addCatering(@PathVariable("eventId") Long eventId, @PathVariable("cateringId") Long cateringId) {
+        eventService.addCatering(eventId, cateringId);
+    }
 }

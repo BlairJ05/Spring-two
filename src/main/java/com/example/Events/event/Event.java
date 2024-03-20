@@ -15,13 +15,13 @@ import java.util.*;
 
 @Entity
 @Data
-//@EqualsAndHashCode(exclude = {"people"})
+@EqualsAndHashCode(exclude = {"attendees", "caterings"})
 @Table
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 
-public class Event {
+public class Event{
     @Id
     @SequenceGenerator(
             name= "event_sequence",
@@ -36,7 +36,7 @@ public class Event {
     private String eventName;
     private String contactInfo;
     private LocalDate eventDate;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "event")
     private Set<People> attendees = new HashSet<>();
     @ManyToMany
@@ -71,5 +71,12 @@ public class Event {
 
     public Event() {
 
+    }
+
+    public void setAttendees(People people){
+        this.attendees.add(people);
+    }
+    public void setCatering(Catering catering){
+        this.caterings.add(catering);
     }
 }

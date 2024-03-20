@@ -1,6 +1,7 @@
 package com.example.Events.catering;
 
 import com.example.Events.event.Event;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,22 +26,10 @@ public class Catering {
         private Long id;
         private String typeFood;
         private String theme;
+        @JsonIgnore
         @ManyToMany(mappedBy = "caterings")
         public Set<Event> events = new HashSet<>();
 
-
-        public Catering(String typeFood, String theme, Set<Event> events) {
-                this.typeFood = typeFood;
-                this.theme = theme;
-                this.events = events;
-        }
-
-        public Catering(Long id, String typeFood, String theme, Set<Event> events) {
-                this.id = id;
-                this.typeFood = typeFood;
-                this.theme = theme;
-                this.events = events;
-        }
 
         public Catering(String typeFood, String theme) {
                 this.typeFood = typeFood;
@@ -49,5 +38,8 @@ public class Catering {
 
         public Catering() {
 
+        }
+        public void setEvent(Event event){
+                this.events.add(event);
         }
 }
